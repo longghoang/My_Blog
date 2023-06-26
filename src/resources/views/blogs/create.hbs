@@ -1,0 +1,29 @@
+<div class="mt-4">
+  <form method="POST" action="/blogs/store">
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Tên bài viết</label>
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="Nhập tên bài viết..."
+      />
+    </div>
+    <div class="mb-3">
+      <label
+        for="exampleFormControlTextarea1"
+        class="form-label"
+      >Nội dung bài viết</label>
+      <textarea
+        name="text"
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="12"
+        placeholder="Nhập nội dung bài viết..."
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đăng bài viết</button>
+  </form>
+</div>
