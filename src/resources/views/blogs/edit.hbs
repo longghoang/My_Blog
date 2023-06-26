@@ -1,0 +1,25 @@
+<div class="mt-4">
+  <form method="POST" action="/blogs/{{Post._id}}?_method=PUT"> 
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Tên bài viết</label>
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        id="exampleFormControlInput1"
+        value="{{Post.title}}"/>
+    </div>
+    
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Nội dung bài viết</label>
+      <textarea
+        name="text"
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="12"
+      >{{Post.text}}</textarea> 
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cập nhật bài viết</button>
+  </form>
+</div>

@@ -1,0 +1,55 @@
+html {
+  position: relative;
+  min-height: 100%; }
+
+body {
+  margin-bottom: 60px;
+  font-family: "Roboto", Arial, sans-serif; }
+
+.read_container {
+  margin-top: 15px 0 0 0; }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #f5f5f5; }
+
+.card-body {
+  margin: 1px 0 0 0;
+  flex-grow: 1; }
+
+.card {
+  margin-top: 20px;
+  height: 400px;
+  overflow: hidden;
+  border-color: #504a4a; }
+
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.card-footer {
+  display: flex;
+  justify-content: center; }
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999; }
+
+.app {
+  margin-top: 100px; }
+
+.btn {
+  background-color: #15b32f;
+  color: white; }
+
+.border-2 {
+  border-color: #000000; }
