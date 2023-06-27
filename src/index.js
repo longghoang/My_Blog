@@ -41,15 +41,16 @@ app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.engine(
     'hbs',
     handlebars.engine({
         defaultLayout: 'main',
         extname: 'hbs',
         helpers: {
-            encodeURIComponent: function (value) {
-                return encodeURIComponent(value);
-            }
+            sum: (a,b) => a + b,
+            encodeURIComponent: (value) => encodeURIComponent(value)
+
         }
     }),
 );
@@ -61,4 +62,4 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 
 route(app)
 
-app.listen(port, () => console.log(`App listening in http://localhost:${port}`))
+app.listen(port, () => console.log(`App listening in http://localhost:${port}/login`))

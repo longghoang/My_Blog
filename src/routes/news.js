@@ -14,7 +14,7 @@ router.get('/register', registerController.register);
 router.get('/login', loginController.login);
 router.get('/logout', logoutController.logout);
 router.post('/login/signin', loginController.signin);
-router.get('/',authenticateToken,newsController.index);
+router.get('/',newsController.index);
 router.get('/:slug',authenticateToken, newsController.read);
 
 

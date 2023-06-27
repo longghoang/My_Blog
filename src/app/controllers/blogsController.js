@@ -9,7 +9,7 @@ class BlogsController {
         next(error)
     }    
     } 
-
+    //create
     async store(req, res, next) {
         try{
             const { title, text } = req.body
@@ -29,7 +29,7 @@ class BlogsController {
             next(error)
         }
     }
-
+    //edit
     async update(req, res, next) {
         try {
 
@@ -43,7 +43,7 @@ class BlogsController {
             next(error)
         }
     }
-
+    //edit
     async edit(req, res, next) {
         try {
 
@@ -62,6 +62,22 @@ class BlogsController {
             })
 
         }catch(error) {
+            next(error)
+        }
+    }
+        //delete
+    async destroy(req, res,next) {
+        try{
+            const deleteBlogs = await BlogPost.deleteOne({ _id: req.params.id })
+
+            if(!deleteBlogs) {
+                res.status(404).json({ message: "Error" })
+            }
+
+            res.redirect('back')
+
+
+        }catch(error){
             next(error)
         }
     }

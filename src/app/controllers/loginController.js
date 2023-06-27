@@ -24,7 +24,7 @@ class LoginController {
           const user = await RegisterSchema.findOne({ email });
       
           if (!user) {
-            return res.status(401).json({ message: "Email không hợp lệ" });
+            return res.status(401).json({ message: "Tài khoản hoặc mật khẩu không chính xác" });
           }
       
           const isPasswordValid = await bcrypt.compare(password, user.password);

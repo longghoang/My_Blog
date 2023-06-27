@@ -12,10 +12,20 @@ class RegisterController {
 
     async signup(req, res, next) {
         try {
-          const { email, password } = req.body
+          const { email, password, verify } = req.body
       
           if (!email || !password) {
             return res.status(404).json({ message: "Email hoặc mật khẩu bị lỗi" })
+          }
+
+        const resisters =  await RegisterSchema.findOne({ email: email })
+
+        if(resisters) {
+          res.status(404).json({ message: "Email đã tồn tại"})
+        }
+
+          if(password != verify){
+            res.status(404).json({ message: "Xác nhận mật khẩu thất bại" })
           }
 
         const hashedPassword = await bcrypt.hash(password, 10);

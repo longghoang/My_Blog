@@ -6,6 +6,7 @@ const authenticateToken = require('../app/middleware/authMiddleware');
 
 
 
+router.delete('/:id', BlogsController.destroy);
 router.put('/:id', BlogsController.update);
 router.get('/:id/edit', BlogsController.edit);
 router.get('/create',authenticateToken, BlogsController.create);
