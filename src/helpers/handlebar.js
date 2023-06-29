@@ -1,19 +1,10 @@
-const Handlebars = require('handlebars');
-
-Handlebars.registerHelper('gt', function(a, b, options) {
-  if (a > b) {
-    return options.fn(this);
+// Định nghĩa helper Handlebars
+Handlebars.registerHelper('isLoggedIn', function(accessToken) {
+  if (accessToken) {
+    // Nếu access token tồn tại, trả về chữ "Đăng xuất"
+    return new Handlebars.SafeString('Đăng xuất');
   } else {
-    return options.inverse(this);
+    // Nếu access token không tồn tại, trả về chữ "Đăng nhập"
+    return new Handlebars.SafeString('Đăng nhập');
   }
 });
-
-Handlebars.registerPartial('truncate', `
-  {{#if (gt this.length max)}}
-    {{slice this 0 max}}...
-  {{else}}
-    {{this}}
-  {{/if}}
-`);
-
-module.exports = Handlebars;

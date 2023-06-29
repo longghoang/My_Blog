@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const mongooseDelete = require('mongoose-delete')
 
 const BlogPost = new Schema(
 {
@@ -8,6 +9,10 @@ const BlogPost = new Schema(
   created_at: {
     type: Date,
     default: Date.now
+  },
+  deleted: {
+    type: Boolean,
+    default: null
   }
 },
 {
@@ -16,4 +21,9 @@ const BlogPost = new Schema(
 
 );
 
-module.exports = mongoose.model('Post', BlogPost, 'post' )
+BlogPost.plugin(mongooseDelete, {
+   overrideMethods: 'all',
+   deletedAt: true
+ })
+
+module.exports = mongoose.model('Post', BlogPost, 'post')

@@ -21,11 +21,11 @@ class RegisterController {
         const resisters =  await RegisterSchema.findOne({ email: email })
 
         if(resisters) {
-          res.status(404).json({ message: "Email đã tồn tại"})
+          return res.status(404).json({ message: "Email đã tồn tại"})
         }
 
           if(password != verify){
-            res.status(404).json({ message: "Xác nhận mật khẩu thất bại" })
+           return res.status(404).json({ message: "Xác nhận mật khẩu thất bại" })
           }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -36,7 +36,7 @@ class RegisterController {
       
           await register.save()
       
-          res.redirect('/?message=Đăng+ký+thành+công')
+          res.redirect('/login?message=Đăng+ký+thành+công')
       
         } catch (error) {
           next(error)

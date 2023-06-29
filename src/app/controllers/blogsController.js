@@ -68,7 +68,7 @@ class BlogsController {
         //delete
     async destroy(req, res,next) {
         try{
-            const deleteBlogs = await BlogPost.deleteOne({ _id: req.params.id })
+            const deleteBlogs = await BlogPost.delete({ _id: req.params.id })
 
             if(!deleteBlogs) {
                 res.status(404).json({ message: "Error" })
@@ -81,6 +81,30 @@ class BlogsController {
             next(error)
         }
     }
+
+    //restore
+
+   //restore
+//restore
+async restore(req, res, next) {
+    try {
+        const restoredBlog = await BlogPost.findByIdAndUpdate(req.params.id, { deleted: false }, { new: true });
+
+        
+        if (!restoredBlog) {
+            return res.status(404).json({ message: "Error" });
+        }
+        
+        res.json(restoredBlog)
+        res.redirect('back');
+    } catch (error) {
+        next(error);
+    }
+}
+
+  
+  
+  
 
 
    
