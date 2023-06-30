@@ -50,9 +50,15 @@
     
 </style>
 
-<div class="mt-4 ">
+     <a href="/" class="back" style="text-decoration: none; color: black;">
+            <i class="fas fa-backward" style="margin-right: 5px;"></i>Quay lại
+    </a>
+<div class="mt-4">
     <h3>Bài viết của tôi</h3>
-    <a href="/stored/trash"class="btn btn-link">Thùng rác</a>
+    <a href="/stored/trash" style="text-decoration: none; color: black;">
+            <i class="fas fa-trash" style="margin-right: 5px;"></i>Thùng rác
+    </a>
+
 
     <table class="table mt-4">
         <thead>
@@ -79,7 +85,9 @@
                 </td>
 
                 <td>
-                    <a href="" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-blogs-modal" class="btn btn-link">Xóa bài viết</a>
+                    <a href="" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-blogs-modal">
+                         <i class="fas fa-trash-alt" style="color: red;"></i>
+                    </a>
                 </td>
 
                 {{else}}

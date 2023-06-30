@@ -38,6 +38,8 @@ html {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis; 
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .card-footer {
@@ -45,6 +47,16 @@ html {
   justify-content: center;
   
 }
+
+.my-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.my-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
 
 
 
@@ -62,9 +74,7 @@ html {
   margin-top: 100px;
 }
 
-.btn {
-  color: rgb(255, 255, 255);
-}
+
 
 .border-2 {
   border-color: #000000; 
