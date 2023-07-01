@@ -1,7 +1,7 @@
 <style>
   .custom-nav-link {
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
     padding-right: 10px;
+    font-size: 20px;
   }
 
   .custom-nav-link:last-child {
@@ -12,12 +12,65 @@
   .custom-nav-link:hover {
     opacity: 0.7;
   }
+  .nav-link-text {
+    padding-left: 10px;
+  }
+
+  .navbar-brand {
+    font-size: 38px;
+  }
+
+  .navbar {
+    padding-bottom: 10px;
+  }
+
+  /* Dropdown menu styles */
+  .dropdown-menu {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    display: none;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .nav-item:hover .dropdown-menu {
+    display: block;
+  }
+
+  .nav-item .nav-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-item .nav-link i {
+    margin-right: 5px;
+  }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
+    <i class="fas fa-blog" style="color: #fafcff; font-size: 50px;"></i>
+    <li class="nav-item">
+          <a class="nav-link custom-nav-link" href="#"></a>
+        </li>
     <a class="navbar-brand fw-bold" href="/">My Blog</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -25,36 +78,43 @@
         <li class="nav-item">
           <a class="nav-link custom-nav-link" href="#"></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active custom-nav-link" aria-current="page" href="/">Home</a>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link active custom-nav-link"
+            aria-current="page"
+            href="#"
+            onmouseover="showDropdown()"
+            onmouseout="hideDropdown()"
+          >
+            <i class="fas fa-book" style="color: #fafcff; font-size: 20px;"></i>
+            <span class="nav-link-text">Bài viết của tôi</span>
+          </a>
+          <div id="dropdown-menu" class="dropdown-menu" onmouseover="showDropdown()" onmouseout="hideDropdown()">
+            <a class="dropdown-item" href="/blogs/create">Tạo bài viết</a>
+            <a class="dropdown-item" href="/stored/blogs">Danh sách bài viết</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link custom-nav-link" href="#"></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active custom-nav-link" aria-current="page" href="/stored/blogs">Bài viết của tôi</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link custom-nav-link" href="#"></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active custom-nav-link" aria-current="page" href="/blogs/create">Tạo bài viết</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link custom-nav-link" href="#"></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active custom-nav-link" aria-current="page" href="/login">Đăng nhập</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link custom-nav-link" href="#"></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active custom-nav-link" aria-current="page" href="/logout">Đăng xuất</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link custom-nav-link" href="#"></a>
-        </li>
+       <li class="nav-item">
+        <a
+          class="nav-link active custom-nav-link"
+          aria-current="page"
+          href="#"
+          onmouseover="showLoginLogout()"
+          onmouseout="hideLoginLogout()"
+        >
+          <i class="fas fa-user" style="color: #fafcff; font-size: 20px;"></i>
+          <span class="nav-link-text" id="user-email">Cá nhân</span>
+        </a>
+        <div
+          id="user-dropdown-menu"
+          class="dropdown-menu"
+          onmouseover="showLoginLogout()"
+          onmouseout="hideLoginLogout()"
+        >
+          <a class="dropdown-item" href="/login">Đăng nhập</a>
+          <a class="dropdown-item" href="/logout">Đăng xuất</a>
+        </div>
+      </li>
       </ul>
       <form class="d-flex" action="/search">
         <input class="form-control me-2" type="search" placeholder="Tìm kiếm bài viết ..." aria-label="Search" name="search">
@@ -63,3 +123,35 @@
     </div>
   </div>
 </nav>
+
+<script>
+  function showDropdown() {
+    var dropdownMenu = document.getElementById("dropdown-menu");
+    dropdownMenu.style.display = "block";
+  }
+
+  function hideDropdown() {
+    var dropdownMenu = document.getElementById("dropdown-menu");
+    dropdownMenu.style.display = "none";
+  }
+
+  function showLoginLogout() {
+    var dropdownMenu = document.getElementById("user-dropdown-menu");
+    dropdownMenu.style.display = "block";
+  }
+
+  function hideLoginLogout() {
+    var dropdownMenu = document.getElementById("user-dropdown-menu");
+    dropdownMenu.style.display = "none";
+  }
+
+
+   window.addEventListener('DOMContentLoaded', () => {
+    const userEmail = document.getElementById('user-email');
+    const email = "{{ email }}"; // Sử dụng email truyền từ mã xử lý yêu cầu
+
+    if (userEmail && email) {
+      userEmail.textContent = email;
+    }
+  });
+</script>

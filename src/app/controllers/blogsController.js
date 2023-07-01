@@ -1,34 +1,34 @@
 const BlogPost = require('../models/blog')
 
 class BlogsController {
-   async create(req, res, next) {
-    try {
-        res.render('blogs/create')
-
-    } catch(error) {
-        next(error)
-    }    
-    } 
-    //create
-    async store(req, res, next) {
-        try{
-            const { title, text } = req.body
-
-            if(!title || !text) {
-                return res.status(400).json( { message: " Điền nội dung vào ngay, không được để trống ! " } )
-            }
-
-            
-
-            const blog = new BlogPost({ title, text })
-
-           await blog.save()
-           res.redirect('/')
-                
-        }catch(error) {
-            next(error)
+    async create(req, res, next) {
+        try {
+          res.render('blogs/create');
+        } catch (error) {
+          next(error);
         }
-    }
+      }
+      
+      // Hàm lưu bài viết vào cơ sở dữ liệu
+      async store(req, res, next) {
+        try {
+          const { title, text } = req.body;
+      
+          if (!title || !text) {
+            return res.status(400).json({ message: "Điền nội dung vào ngay, không được để trống!" });
+          }
+      
+          const userId = req.signedCookies.userId; // Lấy userId của người dùng hiện tại từ cookie
+      
+          const blog = new BlogPost({ title, text, userId });
+      
+          await blog.save(); // Lưu bài viết vào cơ sở dữ liệu
+      
+          res.redirect('/');
+        } catch (error) {
+          next(error);
+        }
+      }
     //edit
     async update(req, res, next) {
         try {

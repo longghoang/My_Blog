@@ -1,18 +1,16 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-5">
-      <div class="border border-dark p-4">
-        <h1 class="text-center">Đăng nhập</h1>
+    <div class="col-md-4">
+      <div class="border rounded-lg shadow p-4"> 
+        <h1 class="text-center fw-bold">Đăng nhập</h1>
         <form method="POST" action="/login/signin">
           <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input type="email" name="email" class="form-control rounded-lg mb-3" id="inputEmail" placeholder="Nhập email" required>
-            
+            <label for="inputEmail" style="font-weight: bold;">Email</label>
+            <input type="email" name="email" class="form-control mb-3" id="inputEmail" placeholder="Nhập email..." required>
           </div>
           <div class="form-group">
-            <label for="inputPassword">Mật khẩu</label>
-            <input type="password" name="password" class="form-control rounded-lg mb-3" id="inputPassword" placeholder="Nhập mật khẩu" required>
-            
+            <label for="inputPassword" style="font-weight: bold;">Mật khẩu</label>
+            <input type="password" name="password" class="form-control mb-3" id="inputPassword" placeholder="Nhập mật khẩu..." required>
           </div>
           <button type="submit" class="btn btn-primary">Đăng nhập</button>
         </form>
@@ -26,6 +24,7 @@
     </div>
   </div>
 </div>
+
 
 
 <script>

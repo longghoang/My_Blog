@@ -24,16 +24,18 @@ class RegisterController {
           return res.status(404).json({ message: "Email đã tồn tại"})
         }
 
-          if(password != verify){
-           return res.status(404).json({ message: "Xác nhận mật khẩu thất bại" })
-          }
+        if(password != verify){
+          return res.status(404).json({ message: "Xác nhận mật khẩu thất bại" })
+        }
+
+        if(password.length < 8) {
+          return res.status(404).json({ message: "Mật khẩu phải chứa ít nhất 8 ký tự" })
+        }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const register = new RegisterSchema({ email, password: hashedPassword });
-      
-        
-      
+    
           await register.save()
       
           res.redirect('/login?message=Đăng+ký+thành+công')

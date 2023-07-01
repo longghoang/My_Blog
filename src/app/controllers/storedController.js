@@ -4,7 +4,10 @@ const moment = require('moment');
 class storedController {
     async stored(req, res, next) {
         try{
-            const blogs = await BlogPost.find({ }).lean()
+
+            const userId = req.signedCookies.userId
+
+            const blogs = await BlogPost.find({ userId }).lean()
 
             const blogsData = blogs.map(blogData => {
                 const createdDate = moment.utc(blogData.created_at).format('DD/MM/YYYY');

@@ -6,8 +6,9 @@ const port = 5000
 const route = require('./routes');
 const path = require('path');
 const methodOverride = require('method-override');
-// const session = require('express-session');
+const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const sessionMiddleware = require('./app/middleware/sessionMiddleware')
 
 
 // conectDB
@@ -16,13 +17,15 @@ const db = require('./config/db')
 
 db.conect()
 
+
+app.use(sessionMiddleware)
 app.use(
     express.urlencoded({
         extended: true,
     }),
 );
 
-app.use(cookieParser())
+app.use(cookieParser('my-secret'))
 
 // app.use(
 //     session({
@@ -41,6 +44,14 @@ app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
+
 
 app.engine(
     'hbs',
@@ -56,6 +67,8 @@ app.engine(
 );
 
 app.use(methodOverride('_method'));
+
+
 
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));

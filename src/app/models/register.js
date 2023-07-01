@@ -4,7 +4,11 @@ const Schema = mongoose.Schema;
 const RegisterSchema = new Schema(
 {
   email: { type: String },
-  password: { type: String },
+  password: { 
+    type: String ,
+    require: true,
+    minlength:8
+  },
   created_at: {
     type: Date,
     default: Date.now
