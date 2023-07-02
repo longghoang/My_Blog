@@ -84,8 +84,6 @@ class BlogsController {
 
     //restore
 
-   //restore
-//restore
 async restore(req, res, next) {
     try {
         const restoredBlog = await BlogPost.findByIdAndUpdate(req.params.id, { deleted: false }, { new: true });

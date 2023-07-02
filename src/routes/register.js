@@ -9,8 +9,9 @@ const RegisterController = require('../app/controllers/RegisterController')
 router.post('/signup', RegisterController.signup);
 router.post('/sendemail/forgot', RegisterController.forgot);
 router.post('/sendemail/confirm', RegisterController.confirm);
-router.get('/changepass', RegisterController.changepass);
+router.post('/changepass', RegisterController.changepass);
 router.get('/sendemail', RegisterController.sendemail);
+router.get('/sendemail/nextpass', RegisterController.nextpass);
 
 
 module.exports = router;

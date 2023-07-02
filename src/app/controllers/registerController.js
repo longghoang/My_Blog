@@ -64,46 +64,85 @@ class RegisterController {
       async  forgot(req, res) {
         try {
 
-          function generateVerificationCode() {
-            return crypto.randomBytes(3).toString('hex').toUpperCase();
+          function generateRandomNumber() {
+            const randomNumber = Math.floor(Math.random() * 9000) + 1000; // Tạo số ngẫu nhiên từ 1000 đến 9999
+            return randomNumber.toString();
           }
-          const verificationCode = generateVerificationCode();
+          
+          
+          const verificationCode = generateRandomNumber();
           const { email  } = req.body;
+
+          const emailDb = await RegisterSchema.findOne({ email: email })
+
+          if(!emailDb) {
+            return res.json('Tài khoản này chưa được đăng ký')
+          }
       
           const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
               user: 'nguyenhoanglongabc2002@gmail.com',
-              pass: 'rlwiputjdxvvthat'
+              pass: 'jkuovnzoqimuwvnm'
             }
           });
       
           
           await transporter.sendMail({
             from: 'nguyenhoanglongabc2002@gmail.com', 
-            to: email, 
+            to: emailDb, 
             subject: 'Hello ✔', 
             text: `Mã xác nhận của bạn là: ${verificationCode}`, 
           });
+
+          const expiryDate = new Date(Date.now() + 60 * 1000); // Thời hạn là 60 giây từ thời điểm hiện tại
+          const expiryDate2 = new Date(Date.now() + 360 * 1000); // Thời hạn là 60 giây từ thời điểm hiện tại
+
+          // Đặt cookie và đặt thời hạn cho nó
+          res.cookie('codeVerify', verificationCode, { expires: expiryDate, signed: true });
+          res.cookie('email', email, { expires: expiryDate2, signed: true });
 
 
 
           
       
           return res.json({
-            message: `Send mail complete for ${email}`
+            message: `Send mail complete for ${emailDb}`
           });
         } catch (error) {
           console.error(error);
-          return res.json({ message: 'error', error });
+          return res.json({ message: 'Not sended code', error });
         }
       }
+
+      ///view changepass
+
+      async nextpass(req, res, next) {
+        try {
+            res.render('logins/changepass')
+        }catch(error) {
+            next(error)
+        }
+    }
 
       // changepass
 
       async changepass(req, res, next) {
         try {
-            res.render('logins/changepass')
+          const { newpass, verifypass } = req.body
+
+          if(newpass != verifypass) {
+            return res.json('Mật khẩu không khớp')
+          }
+
+          const hashedPassword = await bcrypt.hash(newpass, 10);
+
+          const emailUser = req.signedCookies.email
+
+          await RegisterSchema.updateOne({ email: emailUser }, { password: hashedPassword })
+
+          res.redirect('/')
+            
         }catch(error) {
             next(error)
         }
@@ -112,7 +151,23 @@ class RegisterController {
     // confirm
     async confirm(req, res, next) {
       try {
-          res.render('logins/changepass')
+        const codeVerify = req.signedCookies.codeVerify
+
+        if(!codeVerify){
+          return res.status(404).json({ message: "Code is not Verify" })
+        }
+
+        const { code } = req.body
+
+        if(code === codeVerify) {
+          
+
+          res.redirect('/register/sendemail/nextpass')
+        } else {
+          return res.json('Mã xác nhận không tồn tại')
+        }
+
+          
       }catch(error) {
           next(error)
       }
