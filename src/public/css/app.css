@@ -24,7 +24,7 @@ body {
   margin-top: 20px;
   height: 400px;
   overflow: hidden;
-  border-color: #504a4a; }
+  border-color: #d2cccc; }
 
 .card-text {
   display: -webkit-box;
@@ -40,7 +40,7 @@ body {
   justify-content: center; }
 
 .my-card {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease-in-out; }
 
 .my-card:hover {

@@ -18,7 +18,7 @@ const db = require('./config/db')
 db.conect()
 
 
-app.use(sessionMiddleware)
+
 app.use(
     express.urlencoded({
         extended: true,
@@ -75,4 +75,4 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 
 route(app)
 
-app.listen(port, () => console.log(`App listening in http://localhost:${port}/login`))
+app.listen(port, () => console.log(`App listening in http://localhost:${port}`))

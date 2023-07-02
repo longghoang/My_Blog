@@ -1,4 +1,5 @@
 const RegisterSchema = require('../models/register');
+const nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt');
 
 class RegisterController {
@@ -44,7 +45,78 @@ class RegisterController {
           next(error)
         }
       }
+
+      ///
+
+      async sendemail(req, res, next) {
+        try {
+            res.render('logins/forgotpassword')
+        }catch(error) {
+            next(error)
+        }
+    }
+
+
+      /// forgot password
+
       
+
+      async  forgot(req, res) {
+        try {
+
+          function generateVerificationCode() {
+            return crypto.randomBytes(3).toString('hex').toUpperCase();
+          }
+          const verificationCode = generateVerificationCode();
+          const { email  } = req.body;
+      
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'nguyenhoanglongabc2002@gmail.com',
+              pass: 'rlwiputjdxvvthat'
+            }
+          });
+      
+          
+          await transporter.sendMail({
+            from: 'nguyenhoanglongabc2002@gmail.com', 
+            to: email, 
+            subject: 'Hello ✔', 
+            text: `Mã xác nhận của bạn là: ${verificationCode}`, 
+          });
+
+
+
+          
+      
+          return res.json({
+            message: `Send mail complete for ${email}`
+          });
+        } catch (error) {
+          console.error(error);
+          return res.json({ message: 'error', error });
+        }
+      }
+
+      // changepass
+
+      async changepass(req, res, next) {
+        try {
+            res.render('logins/changepass')
+        }catch(error) {
+            next(error)
+        }
+    }
+
+    // confirm
+    async confirm(req, res, next) {
+      try {
+          res.render('logins/changepass')
+      }catch(error) {
+          next(error)
+      }
+  }
 }
 
 module.exports = new RegisterController()
