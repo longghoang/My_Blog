@@ -12,40 +12,52 @@ class RegisterController {
     }
 
     async signup(req, res, next) {
-        try {
-          const { email, password, verify } = req.body
-      
-          if (!email || !password) {
-            return res.status(404).json({ message: "Email hoặc mật khẩu bị lỗi" })
-          }
-
-        const resisters =  await RegisterSchema.findOne({ email: email })
-
-        if(resisters) {
-          return res.status(404).json({ message: "Email đã tồn tại"})
+      try {
+        const { email, password, verify } = req.body;
+    
+        if (!email || !password) {
+          return res.status(404).json({ message: "Email hoặc mật khẩu bị lỗi" });
         }
-
-        if(password != verify){
-          return res.status(404).json({ message: "Xác nhận mật khẩu thất bại" })
+    
+        const resisters = await RegisterSchema.findOne({ email: email });
+    
+        if (resisters) {
+          return res.status(404).json({ message: "Email đã tồn tại" });
         }
-
-        if(password.length < 8) {
-          return res.status(404).json({ message: "Mật khẩu phải chứa ít nhất 8 ký tự" })
+    
+        if (password != verify) {
+          return res.status(404).json({ message: "Xác nhận mật khẩu thất bại" });
         }
-
+    
+        if (password.length < 8) {
+          return res
+            .status(404)
+            .json({ message: "Mật khẩu phải chứa ít nhất 8 ký tự" });
+        }
+    
+        // Kiểm tra mật khẩu chứa ít nhất 1 chữ hoa và 1 ký tự đặc biệt
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasSpecialCharacter = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password);
+    
+        if (!hasUppercase || !hasSpecialCharacter) {
+          return res.status(404).json({
+            message:
+              "Mật khẩu phải chứa ít nhất 1 chữ hoa và 1 ký tự đặc biệt",
+          });
+        }
+    
         const hashedPassword = await bcrypt.hash(password, 10);
-
+    
         const register = new RegisterSchema({ email, password: hashedPassword });
     
-          await register.save()
-      
-          res.redirect('/login?message=Đăng+ký+thành+công')
-      
-        } catch (error) {
-          next(error)
-        }
+        await register.save();
+    
+        res.redirect('/login?message=Đăng+ký+thành+công');
+      } catch (error) {
+        next(error);
       }
-
+    }
+    
       ///
 
       async sendemail(req, res, next) {
@@ -61,7 +73,7 @@ class RegisterController {
 
       
 
-      async  forgot(req, res) {
+    async forgot(req, res) {
         try {
 
           function generateRandomNumber() {
@@ -80,11 +92,13 @@ class RegisterController {
           }
       
           const transporter = nodemailer.createTransport({
+            port: 587,
             service: 'gmail',
             auth: {
               user: 'nguyenhoanglongabc2002@gmail.com',
-              pass: 'jkuovnzoqimuwvnm'
-            }
+              pass: 'nkwfdqkdztnljrig'
+            },
+            secure: false
           });
       
           
@@ -95,12 +109,13 @@ class RegisterController {
             text: `Mã xác nhận của bạn là: ${verificationCode}`, 
           });
 
-          const expiryDate = new Date(Date.now() + 60 * 1000); // Thời hạn là 60 giây từ thời điểm hiện tại
-          const expiryDate2 = new Date(Date.now() + 360 * 1000); // Thời hạn là 60 giây từ thời điểm hiện tại
+          const expiryDate = new Date(Date.now() + 60 * 1000);
+          const expiryDate2 = new Date(Date.now() + 360 * 1000); 
 
-          // Đặt cookie và đặt thời hạn cho nó
+          // Đặt cookie 
           res.cookie('codeVerify', verificationCode, { expires: expiryDate, signed: true });
           res.cookie('email', email, { expires: expiryDate2, signed: true });
+          
 
 
 
@@ -111,7 +126,8 @@ class RegisterController {
           });
         } catch (error) {
           console.error(error);
-          return res.json({ message: 'Not sended code', error });
+          return res.status(500).json({ message: 'Failed to send code', error: error.message });
+
         }
       }
 
@@ -129,7 +145,7 @@ class RegisterController {
 
       async changepass(req, res, next) {
         try {
-          const { newpass, verifypass } = req.body
+          const { email, newpass, verifypass } = req.body
 
           if(newpass != verifypass) {
             return res.json('Mật khẩu không khớp')
@@ -137,9 +153,10 @@ class RegisterController {
 
           const hashedPassword = await bcrypt.hash(newpass, 10);
 
-          const emailUser = req.signedCookies.email
+         
+          
 
-          await RegisterSchema.updateOne({ email: emailUser }, { password: hashedPassword })
+          await RegisterSchema.updateOne({ email: email }, { password: hashedPassword })
 
           res.redirect('/')
             
@@ -171,6 +188,15 @@ class RegisterController {
       }catch(error) {
           next(error)
       }
+  }
+
+
+  async viewchange(req, res, next) {
+    try{
+      res.render('logins/viewchange')
+    } catch(err){
+      next(err)
+    }
   }
 }
 

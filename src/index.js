@@ -2,13 +2,38 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const handlebars = require('express-handlebars');
-const port = 5000
+const port = 4000
 const route = require('./routes');
 const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const sessionMiddleware = require('./app/middleware/sessionMiddleware')
+
+
+
+// const axios = require('axios');
+// const passwordGuesses = ['password1', '12345678', 'qwerty', 'letmein']; // Danh sách mật khẩu đoán
+
+// const targetUrl = 'http://localhost:4000/login'; // Điều chỉnh URL đăng nhập của trang web của bạn
+
+// async function performBruteForce() {
+//   for (const passwordGuess of passwordGuesses) {
+//     try {
+//       const response = await axios.post(targetUrl, { email: 'abc@gmail.com', password: passwordGuess });
+
+//       if (response.status === 200) {
+//         console.log(`Login successful with password: ${passwordGuess}`);
+//         break; // Thoát vòng lặp nếu đăng nhập thành công
+//       }
+//     } catch (error) {
+//       console.log(`Login failed with password: ${passwordGuess}`);
+//     }
+//   }
+// }
+
+// performBruteForce();
+
 
 
 // conectDB

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 async function conect() {
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/blog' ,{
+        await mongoose.connect('mongodb+srv://My_Blog:long123@cluster0.gmcksri.mongodb.net/' ,{
             dbName: "My_Blog",
             useNewUrlParser: true,
             useUnifiedTopology: true
@@ -14,3 +14,4 @@ async function conect() {
 }
 
 module.exports = { conect }
+
