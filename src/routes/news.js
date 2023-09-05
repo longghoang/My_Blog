@@ -10,14 +10,14 @@ const sessionMiddleware  = require('../app/middleware/sessionMiddleware');
 
 
 
-router.get('/search',authenticateToken, newsController.search);
+router.get('/search',sessionMiddleware, newsController.search);
 router.get('/register', registerController.register);
-router.get('/login',sessionMiddleware, loginController.login);
+router.get('/login',authenticateToken, loginController.login);
 router.get('/logout', logoutController.logout);
 router.post('/login/signin', loginController.signin);
-router.get('/',newsController.index);
-router.get('/account', authenticateToken,newsController.account);
-router.get('/:slug',authenticateToken, newsController.read);
+router.get('/', newsController.index);
+router.get('/account',sessionMiddleware, newsController.account);
+router.get('/:slug', sessionMiddleware, newsController.read);
 
 
 module.exports = router;

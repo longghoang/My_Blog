@@ -25,14 +25,14 @@ class LoginController {
         const { email, password, 'g-recaptcha-response': recaptchaResponse } = req.body;
         // const { email, password } = req.body;
 
-    // Xác minh reCAPTCHA
-    const verifyRecaptchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=6Lf6UOsnAAAAAMNWvc_toOltyObjZdMqycqMcsz-&response=${recaptchaResponse}`;
-    const recaptchaResult = await fetch(verifyRecaptchaUrl, { method: 'POST' });
-    const recaptchaData = await recaptchaResult.json();
+    
+    // const verifyRecaptchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=6Lf6UOsnAAAAAMNWvc_toOltyObjZdMqycqMcsz-&response=${recaptchaResponse}`;
+    // const recaptchaResult = await fetch(verifyRecaptchaUrl, { method: 'POST' });
+    // const recaptchaData = await recaptchaResult.json();
 
-    if (!recaptchaData.success) {
-      return res.status(401).json({ message: 'Vui lòng xác minh reCAPTCHA' });
-    }
+    // if (!recaptchaData.success) {
+    //   return res.status(401).json({ message: 'Vui lòng xác minh reCAPTCHA' });
+    // }
     
         if (!email || !password) {
           return res.status(400).json({ message: "Vui lòng điền email và mật khẩu!" });
@@ -48,15 +48,15 @@ class LoginController {
           return res.status(401).json({ message: "Tài khoản đã bị khóa vì thử đăng nhập sai quá nhiều lần. Vui lòng liên hệ quản trị viên Nguyễn Hoàng Long để được hỗ trợ" });
         }
     
-        // const passwordGuesses = [ 'abcxys','hfduff', 'qwerty', 'letmein', 'Long@1234','Long@123'];
+        // const passwordGuesses = [ 'abcxys','hfduff', 'qwerty', 'letmein', 'Long@1234','Long@12345'];
         // let isPasswordValid = false;
     
-        // // Lặp qua danh sách các mật khẩu thử
+        // Lặp qua danh sách các mật khẩu thử
         // for (const passwordGuess of passwordGuesses) {
         //   const isGuessValid = await bcrypt.compare(passwordGuess, user.password);
         //   if (isGuessValid) {
         //     isPasswordValid = true;
-        //     break; // Thoát vòng lặp nếu tìm thấy mật khẩu đúng
+        //     break; 
         //   }
         // }
 
@@ -65,13 +65,15 @@ class LoginController {
         if (!isPasswordValid) {
           user.loginAttempts++;
           await user.save();
-          // // if (user.loginAttempts >= 3) {
-          // //   return res.status(401).json({ message: "Tài khoản đã bị khóa vì thử đăng nhập sai quá nhiều lần. Vui lòng liên hệ quản trị viên Nguyễn Hoàng Long để được hỗ trợ" });
-          // // } else {
+          // if (user.loginAttempts >= 3) {
+          //   return res.status(401).json({ message: "Tài khoản đã bị khóa vì thử đăng nhập sai quá nhiều lần. Vui lòng liên hệ quản trị viên Nguyễn Hoàng Long để được hỗ trợ" });
+          //  } else {
           // res.redirect("back");
           return res.json("Sai mật khẩu");
-          // // // }
+          // }
         }
+
+        req.session.user = email;
     
         user.loginAttempts = 0;
         await user.save();

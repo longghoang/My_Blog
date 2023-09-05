@@ -12,27 +12,6 @@ const sessionMiddleware = require('./app/middleware/sessionMiddleware')
 
 
 
-// const axios = require('axios');
-// const passwordGuesses = ['password1', '12345678', 'qwerty', 'letmein']; // Danh sách mật khẩu đoán
-
-// const targetUrl = 'http://localhost:4000/login'; // Điều chỉnh URL đăng nhập của trang web của bạn
-
-// async function performBruteForce() {
-//   for (const passwordGuess of passwordGuesses) {
-//     try {
-//       const response = await axios.post(targetUrl, { email: 'abc@gmail.com', password: passwordGuess });
-
-//       if (response.status === 200) {
-//         console.log(`Login successful with password: ${passwordGuess}`);
-//         break; // Thoát vòng lặp nếu đăng nhập thành công
-//       }
-//     } catch (error) {
-//       console.log(`Login failed with password: ${passwordGuess}`);
-//     }
-//   }
-// }
-
-// performBruteForce();
 
 
 
@@ -63,6 +42,16 @@ app.use(cookieParser('my-secret'))
 //       },
 //     })
 //   );
+
+app.use(session({
+    secret: 'secret_key', 
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 3600000,
+      secure: false, 
+    },
+  }));
 
 
 app.use(morgan('combined'));

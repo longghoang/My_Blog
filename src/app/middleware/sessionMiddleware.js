@@ -1,7 +1,8 @@
 module.exports = function sessionMiddleware(req, res, next) {
-  if (req.signedCookies.userId) {
-    return res.status(401).json({ message: "Bạn đã đăng nhập rồi" });
-  }
+  if (req.session.user) {
+       next();
+} else {
+    res.json('Bạn chưa đăng nhập')
+}
 
-  next();
 };

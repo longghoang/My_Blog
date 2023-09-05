@@ -3,7 +3,12 @@ const BlogPost = require('../models/blog')
 class BlogsController {
     async create(req, res, next) {
         try {
-          res.render('blogs/create');
+
+            if (req.session.user) {
+                res.render('blogs/create');
+            } else {
+                res.json('Bạn chưa đăng nhập')
+            }
         } catch (error) {
           next(error);
         }
