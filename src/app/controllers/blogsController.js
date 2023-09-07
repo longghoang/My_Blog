@@ -91,14 +91,20 @@ class BlogsController {
 
 async restore(req, res, next) {
     try {
-        const restoredBlog = await BlogPost.findByIdAndUpdate(req.params.id, { deleted: false }, { new: true });
+        const restoredBlog = await BlogPost.findById(req.params.id);
 
         
+
+        if(restoredBlog) {
+            restoredBlog.deleted = true;
+            return restoredBlog.save();
+        }
+
+        console.log(restoredBlog)
         if (!restoredBlog) {
             return res.status(404).json({ message: "Error" });
         }
         
-        res.json(restoredBlog)
         res.redirect('back');
     } catch (error) {
         next(error);

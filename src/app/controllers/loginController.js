@@ -23,7 +23,7 @@ class LoginController {
     async signin(req, res, next) {
       try {
         const { email, password, 'g-recaptcha-response': recaptchaResponse } = req.body;
-        // const { email, password } = req.body;
+        
 
     
     // const verifyRecaptchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=6Lf6UOsnAAAAAMNWvc_toOltyObjZdMqycqMcsz-&response=${recaptchaResponse}`;
@@ -35,13 +35,13 @@ class LoginController {
     // }
     
         if (!email || !password) {
-          return res.status(400).json({ message: "Vui lòng điền email và mật khẩu!" });
+          return res.status(400).json({ message: "VUI LÒNG ĐIỀN EMAIL VÀ MẬT KHẨU" });
         }
     
         const user = await RegisterSchema.findOne({ email });
     
         if (!user) {
-          return res.status(401).json({ message: "Tài khoản hoặc mật khẩu không chính xác" });
+          return res.status(401).json({ message: "TÀI KHOẢN HOẶC MẬT KHẨU KHÔNG CHÍNH XÁC" });
         }
     
         if (user.loginAttempts >= 3) {
@@ -69,7 +69,7 @@ class LoginController {
           //   return res.status(401).json({ message: "Tài khoản đã bị khóa vì thử đăng nhập sai quá nhiều lần. Vui lòng liên hệ quản trị viên Nguyễn Hoàng Long để được hỗ trợ" });
           //  } else {
           // res.redirect("back");
-          return res.json("Sai mật khẩu");
+          return res.status(401).json( {message: " MẬT KHẨU KHÔNG CHÍNH XÁC "} );
           // }
         }
 

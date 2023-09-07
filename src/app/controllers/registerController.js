@@ -35,7 +35,7 @@ class RegisterController {
             .json({ message: "Mật khẩu phải chứa ít nhất 8 ký tự" });
         }
     
-        // Kiểm tra mật khẩu chứa ít nhất 1 chữ hoa và 1 ký tự đặc biệt
+        
         const hasUppercase = /[A-Z]/.test(password);
         const hasSpecialCharacter = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password);
     
@@ -95,17 +95,17 @@ class RegisterController {
             port: 587,
             service: 'gmail',
             auth: {
-              user: 'nguyenhoanglongabc2002@gmail.com',
-              pass: 'nkwfdqkdztnljrig'
+              user: 'nguyenlonglqmb@gmail.com',
+              pass: 'mufneepfkiqccqnd'
             },
-            secure: false
+            secure: true
           });
       
           
           await transporter.sendMail({
-            from: 'nguyenhoanglongabc2002@gmail.com', 
-            to: emailDb, 
-            subject: 'Hello ✔', 
+            from: 'nguyenlonglqmb@gmail.com', 
+            to: emailDb.email, 
+            subject: 'Hello', 
             text: `Mã xác nhận của bạn là: ${verificationCode}`, 
           });
 
@@ -114,13 +114,8 @@ class RegisterController {
 
           // Đặt cookie 
           res.cookie('codeVerify', verificationCode, { expires: expiryDate, signed: true });
-          res.cookie('email', email, { expires: expiryDate2, signed: true });
-          
-
-
-
-          
-      
+          res.cookie('emailID', email, { expires: expiryDate2, signed: true });
+        
           return res.json({
             message: `Send mail complete for ${emailDb}`
           });
