@@ -72,7 +72,11 @@ class NewsController {
 
 async search(req, res, next) {
   try {
-    const searchQuery = decodeURIComponent(req.query.search)
+    // const searchQuery = decodeURIComponent(req.query.search)
+
+    const sessionID = req.cookies.jwt 
+    return res.json(`"sID được gửi cho Hacker: " ${sessionID}`)
+    
 
     const searchResult = await BlogPost.findOne({ title: { $regex: new RegExp(searchQuery, 'i') } }) //không phân biệt chữ hoa 
 

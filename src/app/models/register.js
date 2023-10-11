@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const RegisterSchema = new Schema(
 {
+  loginAttempts: { type: Number, default: 0 },
   email: { type: String },
   password: { 
     type: String ,

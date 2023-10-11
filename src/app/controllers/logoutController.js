@@ -1,14 +1,16 @@
 
 class LogoutController {
-    async logout(req, res, next) {
+  async logout(req, res, next) {
+    req.session.destroy(err => {
+      if (err) {
+        console.error(err);
+      }
       res.clearCookie("jwt");
       res.clearCookie('userId', { signed: true });
-      res.clearCookie('codeVerify', { signed: true });
-      res.redirect('/login')
-    }
-
-
-  
+      res.redirect('/login'); 
+    });
+  }
 }
 
-module.exports = new LogoutController()
+module.exports = new LogoutController();
+

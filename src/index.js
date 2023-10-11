@@ -2,13 +2,17 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const handlebars = require('express-handlebars');
-const port = 3500
+const port = 4000
 const route = require('./routes');
 const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const sessionMiddleware = require('./app/middleware/sessionMiddleware')
+
+
+
+
 
 
 // conectDB
@@ -38,6 +42,16 @@ app.use(cookieParser('my-secret'))
 //       },
 //     })
 //   );
+
+app.use(session({
+    secret: 'secret_key', 
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 36000000000,
+      secure: false, 
+    },
+  }));
 
 
 app.use(morgan('combined'));
