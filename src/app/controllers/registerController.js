@@ -25,6 +25,7 @@ class RegisterController {
           return res.status(404).json({ message: "Email đã tồn tại !!"})
         }
 
+
         if(password != verify){
           return res.status(404).json({ message: "Xác nhận mật khẩu thất bại" })
         }

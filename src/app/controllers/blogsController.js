@@ -15,7 +15,7 @@ class BlogsController {
           const { title, text } = req.body;
       
           if (!title || !text) {
-            return res.status(400).json({ message: "Điền nội dung vào ngay, không được để trống!" });
+            return res.status(400).json({ message: "Điền nội dung vào ngay, không được để trống! " });
           }
       
           const userId = req.signedCookies.userId; // Lấy userId của người dùng hiện tại từ cookie
