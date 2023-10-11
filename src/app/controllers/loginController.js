@@ -28,7 +28,7 @@ class LoginController {
     
     // const verifyRecaptchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=6Lf6UOsnAAAAAMNWvc_toOltyObjZdMqycqMcsz-&response=${recaptchaResponse}`;
     // const recaptchaResult = await fetch(verifyRecaptchaUrl, { method: 'POST' });
-    // const recaptchaData = await recaptchaResult.json();
+    // const recaptchaData = await recaptchaResult.json(); 
 
     // if (!recaptchaData.success) {
     //   return res.status(401).json({ message: 'Vui lòng xác minh reCAPTCHA' });
@@ -48,10 +48,10 @@ class LoginController {
           return res.status(401).json({ message: "Tài khoản đã bị khóa vì thử đăng nhập sai quá nhiều lần. Vui lòng liên hệ quản trị viên Nguyễn Hoàng Long để được hỗ trợ" });
         }
     
-        // const passwordGuesses = [ 'abcxys','hfduff', 'qwerty', 'letmein', 'Long@1234','Long@12345'];
+        // const passwordGuesses = [ 'Long1234@','123456', 'Florentino123', 'long@123456', 'nguyenlong@123','Long@12','password'];
         // let isPasswordValid = false;
     
-        // Lặp qua danh sách các mật khẩu thử
+        
         // for (const passwordGuess of passwordGuesses) {
         //   const isGuessValid = await bcrypt.compare(passwordGuess, user.password);
         //   if (isGuessValid) {
@@ -60,7 +60,7 @@ class LoginController {
         //   }
         // }
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+         const isPasswordValid = await bcrypt.compare(password, user.password);
     
         if (!isPasswordValid) {
           user.loginAttempts++;
@@ -89,6 +89,8 @@ class LoginController {
         next(error);
       }
     }
+    // connect.sid
+    // s%3Ay5uysogtjDqbbNrBynzMfO82nzmcVK3D.%2FmpmrYQh1jF88xOv22NMej10TEOHceDpP7np3aWWdMg
     
 
     
