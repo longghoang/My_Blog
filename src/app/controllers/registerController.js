@@ -95,12 +95,13 @@ class RegisterController {
             text: `Mã xác nhận của bạn là: ${verificationCode}`, 
           });
 
-          const expiryDate = new Date(Date.now() + 60 * 1000); // Thời hạn là 60 giây từ thời điểm hiện tại
-          const expiryDate2 = new Date(Date.now() + 360 * 1000); // Thời hạn là 60 giây từ thời điểm hiện tại
+          const expiryDate = new Date(Date.now() + 60 * 1000);
+          const expiryDate2 = new Date(Date.now() + 360 * 1000); 
 
           // Đặt cookie và đặt thời hạn cho nó
           res.cookie('codeVerify', verificationCode, { expires: expiryDate, signed: true });
           res.cookie('email', email, { expires: expiryDate2, signed: true });
+          
 
 
 
