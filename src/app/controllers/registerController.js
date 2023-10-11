@@ -22,7 +22,7 @@ class RegisterController {
         const resisters =  await RegisterSchema.findOne({ email: email })
 
         if(resisters) {
-          return res.status(404).json({ message: "Email đã tồn tại"})
+          return res.status(404).json({ message: "Email đã tồn tại !!"})
         }
 
         if(password != verify){
@@ -61,7 +61,7 @@ class RegisterController {
 
       
 
-      async  forgot(req, res) {
+    async forgot(req, res) {
         try {
 
           function generateRandomNumber() {
@@ -83,7 +83,7 @@ class RegisterController {
             service: 'gmail',
             auth: {
               user: 'nguyenhoanglongabc2002@gmail.com',
-              pass: 'jkuovnzoqimuwvnm'
+              pass: 'orkkrrgudnvjfpio'
             }
           });
       
