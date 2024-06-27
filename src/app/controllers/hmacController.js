@@ -74,4 +74,3 @@ async readkey(req, res, next) {
 }
 
 module.exports = new NewsController();
-

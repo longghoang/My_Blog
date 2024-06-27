@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row justify-content-center">
-<<<<<<< HEAD
     <div class="col-md-4">
       <div class="border rounded-lg shadow p-4">
+        <a>test</a>
         <h1 class="text-center fw-bold">Đăng nhập</h1>
         <form id="loginForm" method="POST" action="/login/signin">
           <div class="form-group">
@@ -20,26 +20,6 @@
         </form>
         <div class="text-center mt-3">
           <a href="/register/sendemail" style="text-decoration: none;">Quên mật khẩu</a>
-=======
-    <div class="col-md-5">
-      <div class="border border-dark p-4">
-        <h1 class="text-center">Đăng nhập</h1>
-        <form method="POST" action="/login/signin">
-          <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input type="email" name="email" class="form-control rounded-lg mb-3" id="inputEmail" placeholder="Nhập email" required>
-            
-          </div>
-          <div class="form-group">
-            <label for="inputPassword">Mật khẩu</label>
-            <input type="password" name="password" class="form-control rounded-lg mb-3" id="inputPassword" placeholder="Nhập mật khẩu" required>
-            
-          </div>
-          <button type="submit" class="btn btn-primary">Đăng nhập</button>
-        </form>
-        <div class="text-center mt-3">
-          <a href="#" style="text-decoration: none;">Quên mật khẩu</a>
->>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
         </div>
         <div class="text-center mt-3">
           <p style="text-decoration: none;">Bạn chưa có tài khoản? <a href="/register" style="text-decoration: none;">Đăng ký</a></p>
@@ -49,7 +29,6 @@
   </div>
 </div>
 
-<<<<<<< HEAD
 {{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
 
 {{!-- <script>
@@ -57,20 +36,11 @@
     const urlParams = new URLSearchParams(window.location.search);
   const message = urlParams.get('message');
   const textMessage = (" Bạn đã đăng ký tài khoản thành công! ")
-=======
-
-<script>
-  
-  const urlParams = new URLSearchParams(window.location.search);
-  const message = urlParams.get('logoutmessage');
-  const textMessage = (" Bạn đã đăng xuất tài khoản thành công! ")
->>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 
   
   if (message) {
     alert(textMessage);
   }
-<<<<<<< HEAD
 </script> --}}
 
 {{!-- <script>
@@ -108,6 +78,3 @@
   
   window.addEventListener('load', performBruteForce);
 </script> --}}
-=======
-</script>
->>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
