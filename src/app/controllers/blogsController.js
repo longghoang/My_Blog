@@ -1,6 +1,7 @@
 const BlogPost = require('../models/blog')
 
 class BlogsController {
+<<<<<<< HEAD
     async create(req, res, next) {
         try {
 
@@ -35,6 +36,37 @@ class BlogsController {
         }
       }
     //edit
+=======
+   async create(req, res, next) {
+    try {
+        res.render('blogs/create')
+
+    } catch(error) {
+        next(error)
+    }    
+    } 
+
+    async store(req, res, next) {
+        try{
+            const { title, text } = req.body
+
+            if(!title || !text) {
+                return res.status(400).json( { message: " Điền nội dung vào ngay, không được để trống ! " } )
+            }
+
+            
+
+            const blog = new BlogPost({ title, text })
+
+           await blog.save()
+           res.redirect('/')
+                
+        }catch(error) {
+            next(error)
+        }
+    }
+
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
     async update(req, res, next) {
         try {
 
@@ -48,7 +80,11 @@ class BlogsController {
             next(error)
         }
     }
+<<<<<<< HEAD
     //edit
+=======
+
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
     async edit(req, res, next) {
         try {
 
@@ -70,6 +106,7 @@ class BlogsController {
             next(error)
         }
     }
+<<<<<<< HEAD
         //delete
     async destroy(req, res,next) {
         try{
@@ -114,6 +151,8 @@ async restore(req, res, next) {
   
   
   
+=======
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 
 
    

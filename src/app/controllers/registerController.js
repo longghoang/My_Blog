@@ -1,5 +1,8 @@
 const RegisterSchema = require('../models/register');
+<<<<<<< HEAD
 const nodemailer = require("nodemailer");
+=======
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 const bcrypt = require('bcrypt');
 
 class RegisterController {
@@ -12,6 +15,7 @@ class RegisterController {
     }
 
     async signup(req, res, next) {
+<<<<<<< HEAD
       try {
         const { email, password, verify } = req.body;
     
@@ -193,6 +197,30 @@ class RegisterController {
       next(err)
     }
   }
+=======
+        try {
+          const { email, password } = req.body
+      
+          if (!email || !password) {
+            return res.status(404).json({ message: "Email hoặc mật khẩu bị lỗi" })
+          }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const register = new RegisterSchema({ email, password: hashedPassword });
+      
+        
+      
+          await register.save()
+      
+          res.redirect('/?message=Đăng+ký+thành+công')
+      
+        } catch (error) {
+          next(error)
+        }
+      }
+      
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 }
 
 module.exports = new RegisterController()

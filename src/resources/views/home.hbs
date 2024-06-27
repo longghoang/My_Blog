@@ -1,35 +1,56 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 <div class='mt-4'>
     <div class='row'>
         <div class='col-lg-12'>
             <div class="text-center">
+<<<<<<< HEAD
                
+=======
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
                 <div class="title-center">
                     <h1>Say less do more</h1>
                     <p>Life is a journey of self-discovery and growth, where challenges serve as opportunities for learning and personal transformation. Embrace the unknown, take risks, and let your passion guide you. In the face of adversity, find strength and resilience, for it is through facing challenges that we uncover our true potential. Embrace failures as stepping stones to success, and let perseverance be your compass. With determination, hard work, and a steadfast belief in your abilities, you have the power to create your own destiny and achieve greatness. Remember, success is not merely reaching a destination, but rather the continuous pursuit of excellence and the fulfillment found in the journey itself</p>
                 </div>
+<<<<<<< HEAD
                 
                 
 
+=======
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
             </div>
         </div>
         {{#each Blog}}
         <div class='col-sm-6 col-lg-4 mb-4 {{#unless @last}}mr-4{{/unless}}'>
+<<<<<<< HEAD
             <div class='card cars-course-item my-card'>
                 <div class='card-body'>
                     <h5 class='card-title' style="font-weight: bold;">{{this.title}}</h5>
+=======
+            <div class='card cars-course-item'>
+                <div class='card-body'>
+                    <h5 class='card-title'>{{this.title}}</h5>
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
                     <h6 class="card-subtitle mb-2 text-muted">Thời gian tạo bài viết: {{createdDate}}</h6>
                     <p class="card-text">{{this.text}}</p>
                 </div>
                 <div class='card-footer'> 
+<<<<<<< HEAD
                     <a href='/read?_id={{this._id}}' class='btn btn-outline-primary' style="margin-right: 10px;">Đọc bài viết</a>
                     <a href='/blogs/{{this._id}}/edit' class='btn btn-outline-primary' style="margin-left: 10px">Sửa bài viết</a>
+=======
+                    <a href='/read?_id={{this._id}}' class='btn btn-primary' style="margin-right: 10px">Đọc bài viết</a>
+                    <a href='/blogs/{{this._id}}/edit' class='btn btn-primary' style="margin-left: 10px">Sửa bài viết</a>
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
                     
                 </div>
             </div>
         </div>
 
         {{/each}}
+<<<<<<< HEAD
 
     </div>
 </div>
@@ -52,4 +73,21 @@
 
 
 
+=======
+    </div>
+</div>
+
+
+<script>
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const message = urlParams.get('message');
+  const textMessage = (" Bạn đã đăng ký tài khoản thành công! ")
+
+  
+  if (message) {
+    alert(textMessage);
+  }
+</script>
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 

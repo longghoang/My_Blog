@@ -24,21 +24,30 @@ body {
   margin-top: 20px;
   height: 400px;
   overflow: hidden;
+<<<<<<< HEAD
   border-color: #d2cccc; }
+=======
+  border-color: #504a4a; }
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 
 .card-text {
   display: -webkit-box;
   -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
   overflow: hidden;
+<<<<<<< HEAD
   text-overflow: ellipsis;
   text-align: justify;
   text-justify: inter-word; }
+=======
+  text-overflow: ellipsis; }
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 
 .card-footer {
   display: flex;
   justify-content: center; }
 
+<<<<<<< HEAD
 .my-card {
   box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease-in-out; }
@@ -46,6 +55,8 @@ body {
 .my-card:hover {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
 
+=======
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 .navbar {
   position: fixed;
   top: 0;
@@ -56,9 +67,18 @@ body {
 .app {
   margin-top: 100px; }
 
+<<<<<<< HEAD
 .border-2 {
   border-color: #000000; }
 
 .title_blogs {
   display: flex;
   justify-content: space-between; }
+=======
+.btn {
+  background-color: #15b32f;
+  color: white; }
+
+.border-2 {
+  border-color: #000000; }
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb

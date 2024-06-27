@@ -4,12 +4,15 @@ const jwt = require('jsonwebtoken')
 
 
 class LoginController {
+<<<<<<< HEAD
 
   constructor() {
     // Khai báo một đối tượng để lưu thông tin số lần thử đăng nhập sai của mỗi người dùng
     this.loginAttempts = {};
 }
 
+=======
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
     async login(req, res, next) {
         try {
             res.render('logins/login')
@@ -19,6 +22,7 @@ class LoginController {
     }
 
 
+<<<<<<< HEAD
   
     async signin(req, res, next) {
       try {
@@ -128,6 +132,38 @@ class LoginController {
     //   }
     // }
     
+=======
+    async signin(req, res, next) {
+        try {
+          const { email, password } = req.body;
+      
+          if (!email || !password) {
+            return res.status(400).json({ message: "Vui lòng điền email và mật khẩu!" });
+          }
+      
+          const user = await RegisterSchema.findOne({ email });
+      
+          if (!user) {
+            return res.status(401).json({ message: "Email không hợp lệ" });
+          }
+      
+          const isPasswordValid = await bcrypt.compare(password, user.password);
+      
+          if (!isPasswordValid) {
+            return res.status(401).json({ message: "Sai mật khẩu" });
+          }
+      
+          const token = jwt.sign({ email: user.email }, 'secret-key', { expiresIn: '1h' });
+          
+          // Gửi token về cho client trong cookie
+          res.cookie('jwt', token);
+      
+          res.redirect('/');
+        } catch (error) {
+          next(error);
+        }
+      }
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 }
 
 module.exports = new LoginController()

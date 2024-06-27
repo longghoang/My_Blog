@@ -1,5 +1,6 @@
 # My_Blog
 project_Nodejs
+<<<<<<< HEAD
 
 
 async signin(req, res, next) {
@@ -48,3 +49,5 @@ async signin(req, res, next) {
         next(error);
       }
     }
+=======
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb

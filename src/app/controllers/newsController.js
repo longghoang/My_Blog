@@ -1,4 +1,5 @@
 const BlogPost = require('../models/blog');
+<<<<<<< HEAD
 const RegisterSchema = require('../models/register')
 const moment = require('moment');
 
@@ -42,13 +43,34 @@ class NewsController {
         layout: 'main',
         email: email
       });
+=======
+const moment = require('moment');
+
+class NewsController {
+  async index(req, res, next) {
+    try {
+      const blogPosts = await BlogPost.find({}).exec(); // Thực hiện truy vấn và lấy kết quả
+      const Blog = blogPosts.map(blogPost => {
+        const createdDate = moment(blogPost.created_at).format('HH:mm:ss  ,  DD/MM/YYYY');
+        return { ...blogPost.toObject(), createdDate };
+      }); // tObject
+
+      res.render('home', {
+        Blog: Blog, // Truyền kết quả truy vấn vào hàm res.render()
+      });
+
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
     } catch (error) {
       next(error);
     }
   }
+<<<<<<< HEAD
   
 
 ///
+=======
+
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
   async read(req, res, next) {
     try {
       const postId = req.query._id;
@@ -68,6 +90,7 @@ class NewsController {
       next(error);
     }
 }
+<<<<<<< HEAD
 ///
 
 async search(req, res, next) {
@@ -77,6 +100,12 @@ async search(req, res, next) {
     const sessionID = req.cookies.jwt 
     return res.json(`"sID được gửi cho Hacker: " ${sessionID}`)
     
+=======
+
+async search(req, res, next) {
+  try {
+    const searchQuery = decodeURIComponent(req.query.search)
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 
     const searchResult = await BlogPost.findOne({ title: { $regex: new RegExp(searchQuery, 'i') } }) //không phân biệt chữ hoa 
 
@@ -94,6 +123,7 @@ async search(req, res, next) {
   }
 }
 
+<<<<<<< HEAD
 //
 async account(req, res, next) {
   try {
@@ -127,6 +157,8 @@ async account(req, res, next) {
   }
 }
 
+=======
+>>>>>>> 60b9931ed9710200bb01b2b2133456de2f2162cb
 
 
 
