@@ -43,15 +43,15 @@ app.use(cookieParser('my-secret'))
 //     })
 //   );
 
-app.use(session({
-    secret: 'secret_key', 
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 36000000000,
-      secure: false, 
-    },
-  }));
+// app.use(session({
+//     secret: 'secret_key', 
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       maxAge: 36000000000,
+//       secure: false, 
+//     },
+//   }));
 
 
 app.use(morgan('combined'));
@@ -60,10 +60,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'secret_key',
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+  saveUninitialized: false,
+  cookie: { secure: false }
 }))
 
 
